@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- explicit list views definition -->
+       <record model="ir.ui.view" id="classroom_list_view">
+            <field name="name">classroom.list</field>
+            <field name="model">university.classroom</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="classroom_name"/>
+                    <field name="code"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- explicit form views definition -->
+        <record model="ir.ui.view" id="classroom_form_view">
+            <field name="name">classroom.form</field>
+            <field name="model">university.classroom</field>
+            <field name="arch" type="xml">
+
+                <form>
+                    <sheet>
+                    <group>
+                    <group>
+                    <field name="classroom_name"/>
+                    <field name="code"/>
+                    </group>
+                    <group>
+                        <field name="num_prof"/>
+                        <field name="num_sub"/>
+                        <field name="num_etu"/>
+                    </group>
+                    </group>
+                    <notebook>
+                        <page string="List of Professors">
+                            <field name="professor_ids"/>
+                        </page>
+                         <page string="List of subjects">
+                            <field name="subject_ids" />
+                        </page>
+                            <page string="List of students">
+                            <field name="student_ids"/>
+                        </page>
+                    </notebook>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"></field>
+                        <field name="message_ids" widget="mail_thread"></field>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions openeng views on models -->
+        <record model="ir.actions.act_window" id="classroom_list_action">
+            <field name="name">classroom</field>
+            <field name="res_model">university.classroom</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="University" id="university.menu_root"/>
+
+        <!--- menu categories -->
+        <menuitem name="Classroom" id="university_classroom_cat" parent="university.menu_root"/>
+     <!---   <menuitem name="Menu 2" id="university.menu_2" parent="university.menu_root"/> -->
+     <!-- action -->
+        <menuitem name="Classroom" id="university_classroom_list" parent="university_classroom_cat"
+        action="classroom_list_action"/>
+    </data>
+</openerp>

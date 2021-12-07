@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data noupdate="1">
+        <record id="email_templete_prof" model="mail.template">
+            <fields name="name">Template Professor</fields>
+            <fields name="model_id" ref="university.model_university_professor"/>
+            <fields name="email_to">${ctx['email_to']|safe}</fields>
+            <fields name="subject">${object.l_name} Invitation</fields>
+            <fields name="body_html"><![CDATA[
+                <p>
+                    <strong> Dear ${objec.f_name} ${object.l_nam}</strong>
+                </p>
+                <p>We invite you to be present in the week's assembly.</p>
+                <p>Best regards,</p>
+            ]]>
+            </fields>
+        </record>
+    </data>
+</openerp>

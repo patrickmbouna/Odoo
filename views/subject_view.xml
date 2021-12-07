@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- explicit list views definition -->
+       <record model="ir.ui.view" id="subject_list_view">
+            <field name="name">subject.list</field>
+            <field name="model">university.subject</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <!-- explicit form views definition -->
+        <record model="ir.ui.view" id="subject_form_view">
+            <field name="name">subject.form</field>
+            <field name="model">university.subject</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="departement_id"/>
+                    </group>
+                    <notebook>
+                        <page string="List of Professors">
+                            <field name="professor_ids"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions openeng views on models -->
+        <record model="ir.actions.act_window" id="subject_list_action">
+            <field name="name">subject</field>
+            <field name="res_model">university.subject</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Top menu item -->
+        <menuitem name="University" id="university.menu_root"/>
+
+        <!--- menu categories -->
+        <menuitem name="Subject" id="university_subject_cat" parent="university.menu_root"/>
+     <!---   <menuitem name="Menu 2" id="university.menu_2" parent="university.menu_root"/> -->
+     <!-- action -->
+        <menuitem name="Subject" id="university_subject_list" parent="university_subject_cat"
+        action="subject_list_action"/>
+    </data>
+</openerp>
